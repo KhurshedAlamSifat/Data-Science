@@ -1,4 +1,4 @@
-titanicdata <- read.csv("D:/Dataset_midterm_Section(B).csv",header=TRUE, sep=",")
+titanicdata <- read.csv("C:/Users/Khurshed Alam Sifat/Documents/Data Science/Mid Term/Dataset_midterm_Section(B).csv",header=TRUE, sep=",")
 View(titanicdata)
 
 names(titanicdata)
