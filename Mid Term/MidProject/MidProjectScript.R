@@ -20,7 +20,7 @@ colSums(is.na(titanicdata_1))
 sum(titanicdata_1$class=="")
 titanicdata_1[titanicdata_1$class=="",]
 
-which(titanicdata_1[!titanicdata_1$class == "", ])
+which(titanicdata_1$class=="")
 
 frequent_age <- names(which.max(table(titanicdata$age)))
 titanicdata$age[is.na(titanicdata$age)] <- frequent_age
