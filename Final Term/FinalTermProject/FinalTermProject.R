@@ -7,27 +7,16 @@ str(heart_disease)
 summary(heart_disease)
 
 attributes_to_normalize <- setdiff(names(heart_disease), "target")
-
-min_max_normalize <- function(x) {
-  (x - min(x)) / (max(x) - min(x))
-}
-
-for (attr in attributes_to_normalize) {
-  heart_disease[[attr]] <- min_max_normalize(heart_disease[[attr]])
-}
-
+min_max_normalize <- function(x){(x - min(x)) / (max(x) - min(x))}
+for (attr in attributes_to_normalize){heart_disease[[attr]] <- min_max_normalize(heart_disease[[attr]])}
 head(heart_disease)
 
 correlation_matrix <- cor(heart_disease)
 heatmap(correlation_matrix)
 
-mask_lower_triangle <- function(mat) {
-  mat[lower.tri(mat, diag = TRUE)] <- ""
-  mat
-}
-
+mask_lower_triangle <- function(mat){mat[lower.tri(mat, diag = TRUE)] <- ""
+mat}
 upper_triangle <- mask_lower_triangle(correlation_matrix)
-
 sum(upper_triangle>0.05 & upper_triangle<0)
 
 library("caret")
@@ -46,13 +35,11 @@ test_target <- test_data$target
 knn_model <- knn(train_features, test_features, train_target, k = 5)
 
 accuracy <- mean(knn_model == test_target)
-cat("Accuracy (Dividing Data into Training and Test Set):", accuracy, "\n")
+cat("Accuracy (Dividing Data into Training and Test Set):", accuracy)
 
 
 heart_disease$target <- as.factor(heart_disease$target)
-
 control <- trainControl(method = "cv", number = 10)
-
 knn_model_cv <- train(target ~ ., data = heart_disease, method = "knn",
                       trControl = control, preProcess = c("center", "scale"))
 
