@@ -1,4 +1,5 @@
 heart_disease <- read.csv("C:/Users/Khurshed Alam Sifat/Documents/Data Science/Final Term/heart.csv", header = TRUE, sep = ",")
+view(heart_disease)
 
 sum(is.na(heart_disease))
 sum(heart_disease=="")
@@ -61,10 +62,10 @@ cat("Accuracy (10-Fold Cross-Validation):", mean(accuracy_cv), "\n")
 knn_predictions <- predict(knn_model_cv, newdata = heart_disease)
 conf_matrix <- confusionMatrix(knn_predictions, heart_disease$target)
 
-true_positive <- conf_matrix$table[2, 2]
-false_positive <- conf_matrix$table[1, 2]
-true_negative <- conf_matrix$table[1, 1]
-false_negative <- conf_matrix$table[2, 1]
+true_positive <- conf_matrix$table[1, 1]
+false_positive <- conf_matrix$table[2, 1]
+true_negative <- conf_matrix$table[1, 2]
+false_negative <- conf_matrix$table[2, 2]
 
 recall <- true_positive / (true_positive + false_negative)
 precision <- true_positive / (true_positive + false_positive)
