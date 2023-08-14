@@ -22,7 +22,8 @@ sum(upper_triangle>0.05 & upper_triangle<0)
 library("caret")
 library("class")
 
-set.seed(123)
+dim(heart_disease)
+set.seed(1025)
 train_index <- createDataPartition(heart_disease$target, p = 0.7, list = FALSE)
 train_data <- heart_disease[train_index, ]
 test_data <- heart_disease[-train_index, ]
